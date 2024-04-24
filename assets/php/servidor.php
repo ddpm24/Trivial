@@ -132,7 +132,7 @@ if (isset($_REQUEST['peticion'])) {
             break;
 
             
-            case "EjecutarCRUD":
+            case "EjecutarCRUDCategotias":
                 $sql = $_REQUEST['sql'];
                 $devolucion= $_REQUEST['devolucion'];
                 $datos['datos'] = BBDD_CTRLR::CRUD($sql, $devolucion);

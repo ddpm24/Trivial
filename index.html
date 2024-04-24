@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,8 +9,9 @@
     <link rel="stylesheet" href="assets/fontawesome-free-5.15.4-web/css/all.min.css">
     <link rel="stylesheet" href="assets/estilos/modal.css">
     <script src="assets/scripts/script.js"></script>
-   
+
 </head>
+
 <body onload="fInicio()">
     <div id="div_modal">
         <!-- `cat_id`, `cat_categoria`,  -->
@@ -44,36 +46,21 @@
             <input type="text" id="pr_r4">
             <label for="pr_valida">Respuesta válida</label>
             <input type="text" id="pr_valida">
-            
+
             <label for="as_cur_id">CURSO</label>
             <!-- Aquí crearé el combo -->
             <div id="as_curso"></div>
             <p id="pr_error" class="linea_error">ERROR</p>
             <div class="botonera">
                 <div onclick="fOcultarModal()">Cancelar</div>
-                <div id="boton_añadir_pregunta" onclick="fPreguntasCRUD('a')" >Grabar</div>
+                <div id="boton_añadir_pregunta" onclick="fPreguntasCRUD('a')">Grabar</div>
                 <div id="boton_eliminar_pregunta" onclick="fPreguntasCRUD('e')">Eliminar</div>
                 <div id="boton_modificar_pregunta" onclick="fPreguntasCRUD('m')">Modificar</div>
             </div>
         </div>
         <!-- `al_id`, `al_nombre`, `al_apellidos`, `al_cur_id` -->
-        <div id="div_form_alumnos">
-            <input type="hidden" id="al_id">
-            <label for="al_nombre">Nombre</label>
-            <input type="text" id="al_nombre">
-            <label for="al_apellidos">apellidos</label>
-            <input type="text" id="al_apellidos">
-            <label for="al_cur_id">Curso</label>
-            <!-- Aquí crearé el combo -->
-            <div id="al_curso"></div>
-            <p id="al_error" class="linea_error">ERROR</p>
-            <div class="botonera">
-                <div onclick="fOcultarModal()">Cancelar</div>
-                <div id="boton_grabar_alumnos" onclick="fAlumnoCRUD('a')">Grabar</div>
-                <div id="boton_eliminar_alumnos" onclick="fAlumnoCRUD('e')">Eliminar</div>
-                <div id="boton_modificar_alumnos" onclick="fAlumnoCRUD('m')">Modificar</div>
-            </div>
-        </div>
+
+    </div>
     </div>
 
     <header>
@@ -82,7 +69,7 @@
     <nav>
         <div onclick="fMostrarCategorias()">Categorías</div>
         <div onclick="fMostrarPreguntas()">Preguntas</div>
-    
+
     </nav>
     <section>
         <!-- esto es para que te muestre las selecciones (el combo) -->
@@ -95,4 +82,5 @@
     </section>
     <footer></footer>
 </body>
+
 </html>
