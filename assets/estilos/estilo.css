@@ -1,0 +1,41 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+body{
+    height: 100vh;
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 80px 50px 1fr 50px;
+    grid-template-areas: 
+        "zh zh" "zn zn" "zs zs" "zf zf";
+}
+header{
+    grid-area: zh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: black;
+    color: white;
+}
+nav{
+    grid-area: zn;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    background-color: #444;
+    color: white;
+}
+section{
+    grid-area: zs;
+    /* display: flex;
+    align-items: center;
+    justify-content: center; */
+    background-color: #ddd;
+    color: black;
+}
+footer{
+    grid-area: zf;
+    background-color: black;
+    color: white;
+}
