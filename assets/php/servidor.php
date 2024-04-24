@@ -144,7 +144,7 @@ if (isset($_REQUEST['peticion'])) {
                 $datos['datos'] = BBDD_CTRLR::CRUD($sql, $devolucion);
                 echo json_encode($datos);  
                 break;
-            case "EjecutarCRUDAlumnos":
+            case "EjecutarCRUDPreguntas":
                 $sql = $_REQUEST['sql'];
                 $devolucion= $_REQUEST['devolucion'];
                 $datos['datos'] = BBDD_CTRLR::CRUD($sql, $devolucion);

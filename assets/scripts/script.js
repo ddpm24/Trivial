@@ -1,5 +1,5 @@
 function fInicio() {
-    // fGeneraCombo("#as_curso","as_cur_id");
+    fGeneraCombo("#as_curso","as_cur_id");
     // fGeneraCombo("#al_curso","al_cur_id");
 
 
@@ -136,8 +136,9 @@ function fMostrarPreguntas() {
         .then((data) => {
             console.log("Preguntas", data);
             let html = "<h2>Preguntas</h2>";
-            html += `<span title="Añadir" onclick="fPrepararFormPreguntas('a','0','','','','','','','')">`  // Hay que quitar la funcion para que funcionen las demas
+            html += `<span title="Añadir" onclick="fPrepararFormPreguntas('a','0','','','','','','','')">` //   // Hay que quitar la funcion para que funcionen las demas
             html += `<i class="fas fa-plus"></i>`
+            html += `</span>`
             html += "<table border=1>";
             // Cabeceras
             html += "<tr>";
@@ -165,10 +166,10 @@ function fMostrarPreguntas() {
                 html += `    <td>${item.pr_valida}</td>`;
                 html += `    <td>`;
                 html += `        <div class="botonera">`;
-                html += `            <div onclick="fPrepararFormPreguntas('e',${item.pr_id},'${item.cat_categoria}','${item.pr_pregunta}','${item.pr_r1}','${item.pr_r2}','${item.pr_r3}','${item.pr_r4}','${item.pr_valida}')"> `;
+                html += `            <div onclick="fPrepararFormPreguntas('e',${item.pr_id},'${item.cat_categoria}','${item.pr_pregunta}','${item.pr_r1}','${item.pr_r2}','${item.pr_r3}','${item.pr_r4}','${item.pr_valida},${item.pr_cat_id})"> `;
                 html += `                <i class="fas fa-trash" title="Borrar"></i>`;
                 html += "            </div>";
-                html += `            <div onclick="fPrepararFormPreguntas('m',${item.pr_id},'${item.cat_categoria}','${item.pr_pregunta}','${item.pr_r1}','${item.pr_r2}','${item.pr_r3}','${item.pr_r4}','${item.pr_valida}')">`;
+                html += `            <div onclick="fPrepararFormPreguntas('m',${item.pr_id},'${item.cat_categoria}','${item.pr_pregunta}','${item.pr_r1}','${item.pr_r2}','${item.pr_r3}','${item.pr_r4}','${item.pr_valida}',${item.pr_cat_id})">`;
                 html += `                <i class="fas fa-edit"></i>`;
                 html += "            </div>";
                 html += "        </div>";
@@ -184,11 +185,12 @@ function fMostrarPreguntas() {
 }
 // mostrar modal
 //  `cat_id`, `cat_categoria`, 'pr_pregunta', `pr_r1`, `pr_r2`, `pr_r3`, `pr_r4`, `pr_valida`  
-function fPrepararFormPreguntas(operacion, id, categoria, pr_pregunta, pr_r1, pr_r2, pr_r3, pr_r4, pr_valida) {
+function fPrepararFormPreguntas(operacion, id, categoria, pr_pregunta, pr_r1, pr_r2, pr_r3, pr_r4, pr_valida,pr_cat_id) {
 
-    console.log("qwecwercerwc:   ", operacion, id, categoria, pr_pregunta, pr_r1, pr_r2, pr_r3, pr_r4, pr_valida)
+    console.log("qwecwercerwc:   ", operacion, id, categoria, pr_pregunta, pr_r1, pr_r2, pr_r3, pr_r4, pr_valida,pr_cat_id)
 
     document.querySelector("#pr_id").value = id;
+    document.querySelector("#pr_cat_id").value = pr_cat_id;
     document.querySelector("#cat_categoria").value = categoria;
     document.querySelector("#pr_pregunta").value = pr_pregunta;
     document.querySelector("#pr_r1").value = pr_r1;
@@ -223,25 +225,32 @@ function fPrepararFormPreguntas(operacion, id, categoria, pr_pregunta, pr_r1, pr
     fMostrarForm("#div_form_Preguntas");
     // console.log("ver",id,apellido);
 }
-function fAlumnoCRUD(operacion) {
-    let id = document.querySelector("#al_id").value;
-    let nombre = document.querySelector("#al_nombre").value;
-    let apellidos = document.querySelector("#al_apellidos").value;
-    let alcurid = document.querySelector("#al_cur_id").value;
+function fPreguntasCRUD(operacion) {as_cur_id
+    let id = document.querySelector("#pr_id").value;
+    let categoria = document.querySelector("#cat_categoria").value;
+    let pregunta = document.querySelector("#pr_pregunta").value;
+    let p1 = document.querySelector("#pr_r1").value;
+    let p2 = document.querySelector("#pr_r2").value;
+    let p3 = document.querySelector("#pr_r3").value;
+    let p4 = document.querySelector("#pr_r4").value;
+    let valida = document.querySelector("#pr_valida").value;
+    let pr_cat_id = document.querySelector("#as_cur_id").value;
+
     let devolucion = "";
     let sql = "";
     if (operacion == 'a') {
-        sql = `INSERT INTO alumnos VALUES (null,'${nombre}','${apellidos}',${alcurid})`;
+        sql = `INSERT INTO preguntas (pr_id, pr_pregunta, pr_r1, pr_r2, pr_r3, pr_r4, pr_valida, pr_cat_id) 
+                            VALUES (null, '${pregunta}', '${p1}', '${p2}', '${p3}', '${p4}', '${valida}', '${pr_cat_id}')`;
         devolucion = "i";
     }
     if (operacion == 'e') {
-        sql = `DELETE FROM alumnos WHERE al_id = ${id}`;
+        sql = `DELETE FROM preguntas WHERE pr_id = ${id}`;
     }
     if (operacion == 'm') {
-        sql = `UPDATE alumnos SET al_nombre='${nombre}',al_apellidos='${apellidos}',al_cur_id=${alcurid} WHERE al_id =${id}`;
+        sql = `UPDATE preguntas SET pr_pregunta='${pregunta}',pr_r1='${p1}',pr_r2='${p2}',pr_r3='${p3}',pr_r4='${p4}',pr_valida=${valida} WHERE pr_id =${id}`;
     }
     console.log(sql);
-    let URL = 'assets/php/servidor.php?peticion=EjecutarCRUDAlumnos';
+    let URL = 'assets/php/servidor.php?peticion=EjecutarCRUDPreguntas';
     URL += "&sql=" + sql;
     URL += "&devolucion=" + devolucion;
 
@@ -253,7 +262,7 @@ function fAlumnoCRUD(operacion) {
 
         })
         .finally(() => {
-            fMostrarAlumnos();
+            fMostrarPreguntas();
         })
 }
 // -----------------asignaturas--------------------------------------
@@ -384,15 +393,15 @@ function fAsignaturasCRUD(operacion) {
 
 function fGeneraCombo(donde, con_que_nombre) {
     // Generar combo de cursos DONDE tú digas
-    let URL = 'assets/php/servidor.php?peticion=CargarCursos';
+    let URL = 'assets/php/servidor.php?peticion=CargarCategorias';
     fetch(URL)
         .then((response) => response.json())
         .then((data) => {
-            console.log("Cursos", data);
+            console.log("Categorias", data);
             let html = `<select name='sel_cursos' id='${con_que_nombre}'>`;
             for (i = 0; i < data.datos.length; i++) {
                 let id = data.datos[i].cur_id;
-                html += `<option value="${data.datos[i].cur_id}">${data.datos[i].cur_nombre}</option>`;
+                html += `<option value="${data.datos[i].cat_id}">${data.datos[i].cat_categoria}</option>`;
             };
             html += "</select>";
             document.querySelector(donde).innerHTML = html;
