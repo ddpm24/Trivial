@@ -69,24 +69,25 @@ function fMostrarCategorias(){
 }
 // mostrar modal
 function fPrepararFormCategorias(operacion, id, nombre,color) {
+    console.log("wecqecwrcqwrc:  ",operacion, id, nombre,color)
     document.querySelector("#cat_id").value=id;
     document.querySelector("#cur_error").innerHTML="";
-    document.querySelector("#cat_categoria").value=nombre;
+    document.querySelector("#categoria").value=nombre;
     document.querySelector("#cat_color").value=color;
     if (operacion == 'a') {
-        document.querySelector("#cat_categoria").innerHTML="";
+        // document.querySelector("#cat_categoria").innerHTML="";
         document.querySelector("#btn_curg").style.display="block";
         document.querySelector("#btn_cure").style.display="none";
         document.querySelector("#btn_curm").style.display="none";
     }
     if (operacion == 'e') {
-        document.querySelector("#cat_categoria").innerHTML="";
+        // document.querySelector("#cat_categoria").innerHTML="";
         document.querySelector("#btn_curg").style.display="none";
         document.querySelector("#btn_cure").style.display="block";
         document.querySelector("#btn_curm").style.display="none";
     }
     if (operacion == 'm') {
-        document.querySelector("#cat_categoria").innerHTML="";
+        // document.querySelector("#cat_categoria").innerHTML="";
         document.querySelector("#btn_curg").style.display="none";
         document.querySelector("#btn_cure").style.display="none";
         document.querySelector("#btn_curm").style.display="block";
@@ -133,10 +134,9 @@ function fMostrarPreguntas(){
         .then((response) => response.json())
         .then((data) => {
             console.log("Preguntas", data);    
-            let html = "<h2>Preguntas</h2>(";
-            html += `<span title="Añadir" onclick="fPrepararFormPreguntas('a',0,'','',0)">`
+            let html = "<h2>Preguntas</h2>";
+            html += `<span title="Añadir" onclick="fPrepararFormPreguntas('a','0','','','','','','','')">`  // Hay que quitar la funcion para que funcionen las demas
             html+=`<i class="fas fa-plus"></i>`
-            html+= `</span>)`;
             html += "<table border=1>";
             // Cabeceras
             html += "<tr>";
@@ -164,10 +164,10 @@ function fMostrarPreguntas(){
                 html+= `    <td>${item.pr_valida}</td>`;
                 html+= `    <td>`;
                 html+= `        <div class="botonera">`;    
-                html+= `            <div onclick="fPrepararFormPreguntas('e',${item.cat_id},'${item.cat_categoria}','${item.pr_pregunta}',${item.pr_r1},'${item.pr_r2}','${item.pr_r3}','${item.pr_r4}','${item.pr_valida}')"> `;
-                html+= `                <i class="fas fa-trash" title="Borrar" '${item.al_nombre}'></i>`;
+                html+= `            <div onclick="fPrepararFormPreguntas('e',${item.pr_id},'${item.cat_categoria}','${item.pr_pregunta}','${item.pr_r1}','${item.pr_r2}','${item.pr_r3}','${item.pr_r4}','${item.pr_valida}')"> `;
+                html+= `                <i class="fas fa-trash" title="Borrar"></i>`;
                 html+= "            </div>";                
-                html+= `            <div onclick="fPrepararFormPreguntas('m',${item.al_id},'${item.al_nombre}','${item.al_apellidos}',${item.al_cur_id})">`;
+                html+= `            <div onclick="fPrepararFormPreguntas('m',${item.pr_id},'${item.cat_categoria}','${item.pr_pregunta}','${item.pr_r1}','${item.pr_r2}','${item.pr_r3}','${item.pr_r4}','${item.pr_valida}')">`;
                 html+= `                <i class="fas fa-edit"></i>`;                
                 html+= "            </div>";             
                 html+= "        </div>";
@@ -184,41 +184,43 @@ function fMostrarPreguntas(){
 // mostrar modal
   //  `cat_id`, `cat_categoria`, 'pr_pregunta', `pr_r1`, `pr_r2`, `pr_r3`, `pr_r4`, `pr_valida`  
 function fPrepararFormPreguntas(operacion,id,categoria,pr_pregunta,pr_r1,pr_r2,pr_r3,pr_r4,pr_valida) {
-        document.querySelector("#cat_id").value=id;
+
+    console.log("qwecwercerwc:   ",operacion,id,categoria,pr_pregunta,pr_r1,pr_r2,pr_r3,pr_r4,pr_valida )
+
+        document.querySelector("#pr_id").value=id;
         document.querySelector("#cat_categoria").value=categoria;
         document.querySelector("#pr_pregunta").value=pr_pregunta;
         document.querySelector("#pr_r1").value=pr_r1;
         document.querySelector("#pr_r2").value=pr_r2;
         document.querySelector("#pr_r3").value=pr_r3;
         document.querySelector("#pr_r4").value=pr_r4;
-        document.querySelector("#pr_r4").value=pr_r4;
         document.querySelector("#pr_valida").value=pr_valida;
-        document.querySelector("#al_error").innerHTML="";
+        document.querySelector("#pr_error").innerHTML="";
         //esto es para que te muestre el curso en el que esta puesto
-        document.querySelector("#al_cur_id").value=curid;
-    if (operacion=='a') {
+        // document.querySelector("#al_cur_id").value=curid;
+    if (operacion == 'a') {
         document.querySelector("#al_nombre").innerHTML="";
         document.querySelector("#al_apellidos").innerHTML="";
-        document.querySelector("#boton_grabar_alumnos").style.display="block";
-        document.querySelector("#boton_eliminar_alumnos").style.display="none";
-        document.querySelector("#boton_modificar_alumnos").style.display="none";
+        document.querySelector("#boton_añadir_pregunta").style.display="block";
+        document.querySelector("#boton_eliminar_pregunta").style.display="none";
+        document.querySelector("#boton_modificar_pregunta").style.display="none";
     }
-    if (operacion=='e') {
+    if (operacion == 'e') {
         document.querySelector("#al_nombre").innerHTML="";
         document.querySelector("#al_apellidos").innerHTML="";
-        document.querySelector("#boton_grabar_alumnos").style.display="none";
-        document.querySelector("#boton_eliminar_alumnos").style.display="block";
-        document.querySelector("#boton_modificar_alumnos").style.display="none";
+        document.querySelector("#boton_añadir_pregunta").style.display="none";
+        document.querySelector("#boton_eliminar_pregunta").style.display="block";
+        document.querySelector("#boton_modificar_pregunta").style.display="none";
     }
-    if (operacion=='m') {
+    if (operacion == 'm') {
         document.querySelector("#al_nombre").innerHTML="";
         document.querySelector("#al_apellidos").innerHTML="";
-        document.querySelector("#boton_grabar_alumnos").style.display="none";
-        document.querySelector("#boton_eliminar_alumnos").style.display="none";
-        document.querySelector("#boton_modificar_alumnos").style.display="block";
+        document.querySelector("#boton_añadir_pregunta").style.display="none";
+        document.querySelector("#boton_eliminar_pregunta").style.display="none";
+        document.querySelector("#boton_modificar_pregunta").style.display="block";
     }
-    fMostrarForm("#div_form_alumnos");
-    console.log("ver",id,apellido);
+    fMostrarForm("#div_form_Preguntas");
+    // console.log("ver",id,apellido);
 }
 function fAlumnoCRUD(operacion){
     let id= document.querySelector("#al_id").value;

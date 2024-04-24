@@ -15,8 +15,8 @@
         <!-- `cat_id`, `cat_categoria`,  -->
         <div id="div_form_categoria">
             <input type="hidden" id="cat_id">
-            <label for="cat_categoria">Categoría</label>
-            <input type="text" id="cat_categoria">
+            <label for="categoria">Categoría</label>
+            <input type="text" id="categoria">
             <label for="cat_color">Color</label>
             <input type="text" id="cat_color">
             <p id="cur_error" class="linea_error">ERROR</p>
@@ -29,7 +29,7 @@
         </div>
         <!--  `cat_id`, `cat_categoria`, 'pr_pregunta', `pr_r1`, `pr_r2`, `pr_r3`, `pr_r4`, `pr_valida`  -->
         <div id="div_form_Preguntas">
-            <input type="hidden" id="cat_id">
+            <input type="hidden" id="pr_id">
             <label for="cat_categoria">Categoría</label>
             <input type="text" id="cat_categoria">
             <label for="pr_pregunta">Pregunta</label>
@@ -48,12 +48,12 @@
             <label for="as_cur_id">CURSO</label>
             <!-- Aquí crearé el combo -->
             <div id="as_curso"></div>
-            <p id="as_error" class="linea_error">ERROR</p>
+            <p id="pr_error" class="linea_error">ERROR</p>
             <div class="botonera">
                 <div onclick="fOcultarModal()">Cancelar</div>
-                <div id="boton_grabar_asignatura" onclick="fAsignaturasCRUD('a')" >Grabar</div>
-                <div id="boton_borrar_asignatura" onclick="fAsignaturasCRUD('e')">Eliminar</div>
-                <div id="boton_modificar_asignatura" onclick="fAsignaturasCRUD('m')">Modificar</div>
+                <div id="boton_añadir_pregunta" onclick="fPreguntasCRUD('a')" >Grabar</div>
+                <div id="boton_eliminar_pregunta" onclick="fPreguntasCRUD('e')">Eliminar</div>
+                <div id="boton_modificar_pregunta" onclick="fPreguntasCRUD('m')">Modificar</div>
             </div>
         </div>
         <!-- `al_id`, `al_nombre`, `al_apellidos`, `al_cur_id` -->
