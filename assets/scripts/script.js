@@ -29,13 +29,14 @@ function fMostrarCategorias() {
         .then((response) => response.json())
         .then((data) => {
             console.log("Categorias", data);
-            let html = "<h2>";
+            let html =`<div class="gran_cont_for">`
+            html += "<h2>";
             html += `Categorías (`;
-            html += `  <span title="Añadir categorías" onclick="fPrepararFormCategorias('a',0,'','')">`;
+            html += `  <span class="Tit_tabla" title="Añadir categorías" onclick="fPrepararFormCategorias('a',0,'','')">`;
             html += `<i class="fas fa-plus"> </i>`;
             html += `</span>)`
             html += `</h2>`
-            html += "<table border=1>";
+            html += "<table>";
             // Cabeceras
             html += "<tr>";
             html += "   <th>Categoría</th>";
@@ -46,7 +47,7 @@ function fMostrarCategorias() {
             // Datos
             data.datos.forEach(item => {
                 html += "<tr>";
-                html += `    <td>${item.cat_categoria}</td>`;
+                html += `    <td style="color:${item.cat_color};">${item.cat_categoria}</td>`;
                 html += `    <td>${item.cat_color}</td>`;
                 html += `    <td>`;
                 html += `        <div class="botonera">`;
@@ -61,6 +62,7 @@ function fMostrarCategorias() {
                 html += "</tr>";
             });
             html += "</table>";
+            html +="</div>";
             document.querySelector("section").innerHTML = html;
         })
         .finally(function () {
@@ -135,11 +137,12 @@ function fMostrarPreguntas() {
         .then((response) => response.json())
         .then((data) => {
             console.log("Preguntas", data);
-            let html = "<h2>Preguntas</h2>";
+            let html =`<div class="gran_cont_for">`
+            html += "<h2>Preguntas(";
             html += `<span title="Añadir" onclick="fPrepararFormPreguntas('a','0','','','','','','','')">` //   // Hay que quitar la funcion para que funcionen las demas
             html += `<i class="fas fa-plus"></i>`
-            html += `</span>`
-            html += "<table border=1>";
+            html += `</span>)</h2>`
+            html += "<table>";
             // Cabeceras
             html += "<tr>";
             html += "   <th>Categoría</th>";
@@ -157,7 +160,7 @@ function fMostrarPreguntas() {
                 if (item.al_id == null) item.al_id = "";
                 if (item.al_nombre == null) item.al_nombre = "";
                 if (item.al_apellidos == null) item.al_apellidos = "";
-                html += `    <td>${item.cat_categoria}</td>`;
+                html += `    <td style="color:${item.cat_color};">${item.cat_categoria}</td>`;
                 html += `    <td>${item.pr_pregunta}</td>`;
                 html += `    <td>${item.pr_r1}</td>`;
                 html += `    <td>${item.pr_r2}</td>`;
@@ -166,7 +169,7 @@ function fMostrarPreguntas() {
                 html += `    <td>${item.pr_valida}</td>`;
                 html += `    <td>`;
                 html += `        <div class="botonera">`;
-                html += `            <div onclick="fPrepararFormPreguntas('e',${item.pr_id},'${item.cat_categoria}','${item.pr_pregunta}','${item.pr_r1}','${item.pr_r2}','${item.pr_r3}','${item.pr_r4}','${item.pr_valida},${item.pr_cat_id})"> `;
+                html += `            <div onclick="fPrepararFormPreguntas('e',${item.pr_id},'${item.cat_categoria}','${item.pr_pregunta}','${item.pr_r1}','${item.pr_r2}','${item.pr_r3}','${item.pr_r4}','${item.pr_valida}',${item.pr_cat_id})">`;
                 html += `                <i class="fas fa-trash" title="Borrar"></i>`;
                 html += "            </div>";
                 html += `            <div onclick="fPrepararFormPreguntas('m',${item.pr_id},'${item.cat_categoria}','${item.pr_pregunta}','${item.pr_r1}','${item.pr_r2}','${item.pr_r3}','${item.pr_r4}','${item.pr_valida}',${item.pr_cat_id})">`;
@@ -177,6 +180,7 @@ function fMostrarPreguntas() {
                 html += "</tr>";
             });
             html += "</table>";
+            html +="</div>";
             document.querySelector("section").innerHTML = html;
         })
         .finally(function () {

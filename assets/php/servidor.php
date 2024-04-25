@@ -40,7 +40,7 @@ if (isset($_REQUEST['peticion'])) {
             break;
             //------------------------------- Preguntas -------------------------------
         case "CargarPreguntas":
-            $sql = "SELECT p.*,c.cat_categoria FROM preguntas as p 
+            $sql = "SELECT p.*,c.* FROM preguntas as p 
             LEFT JOIN categorias as c ON c.cat_id = p.pr_cat_id
             order by p.pr_id";
             $datos['sql']=$sql;

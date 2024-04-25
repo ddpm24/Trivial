@@ -47,17 +47,31 @@
     flex-wrap: wrap;
     justify-content: space-between;
     align-items: center;
-    margin-top: 10px;
+    /* margin-top: 10px; */
+    padding:10px 15px 10px 15px;
 }
-.botonera > div{
+.fas.fa-edit{
     background-color: blue;
     color: white;
     border-radius: 5px;
     padding: 5px;
     cursor: pointer;
 }
-.botonera > div:hover{
+.fas.fa-edit:hover{
     background-color: #fff;
     color: blue;
     border: 1px solid blue;
 }
+.fas.fa-trash{
+    background-color: red;
+    color: white;
+    border-radius: 5px;
+    padding: 5px;
+    cursor: pointer;
+}
+.fas.fa-trash:hover{
+    background-color: white;
+    color: red;
+    border: 1px solid red;
+}
+
